@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <string>
 
 namespace BreadthFirstSearch
 {
@@ -9,7 +10,11 @@ namespace BreadthFirstSearch
   using row = container<int>;
   using Matrix = container<row>;
 
-  Matrix generate_matrix(size_t N, size_t M);
+  /// loads test input file and creates vector of matricies
+  std::vector<Matrix> load_test_data(std::string file_name);
+
+  /// generates a matrix from vector of data
+  Matrix generate_matrix(size_t N, std::vector<int> data);
 
 } // BreadthFirstSearch
 
