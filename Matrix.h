@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-namespace BreadthFirstSearch
+namespace DepthFirstSearch
 {
   template <typename data_type>
   using container = std::vector<data_type>;
@@ -16,7 +16,7 @@ namespace BreadthFirstSearch
   /// generates a matrix from vector of data
   Matrix generate_matrix(size_t N, std::vector<int> data);
 
-} // BreadthFirstSearch
+} // DepthFirstSearch
 
 
 

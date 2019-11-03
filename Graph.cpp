@@ -1,6 +1,6 @@
 #include "Graph.h"
 
-namespace BreadthFirstSearch
+namespace DepthFirstSearch
 {
   Graph::Graph(const Matrix& mat)
     : Nodes{}, dim{ mat.size(),mat[0].size() }
@@ -43,29 +43,29 @@ namespace BreadthFirstSearch
 
   std::vector<Graph::Position> Graph::get_neighbours(Position pos)
   {
+    // grabs the neigbours in clockwise order starting from up
     std::vector<Position> output;
 
-    // up    = row - 1, col (if >= 0)
-    if ((pos.first - 1) >= 0)
+    // left  = row, col + 1 (if <= col size)
+    if ((pos.second + 1) < dim.second)
     {
-      output.emplace_back(std::make_pair(pos.first - 1, pos.second));
+      output.push_back(std::make_pair(pos.first, pos.second + 1));
     }
     // down  = row + 1, col (if <= row size) 
     if ((pos.first + 1) < dim.first)
     {
-      output.emplace_back(std::make_pair(pos.first + 1, pos.second));
+      output.push_back(std::make_pair(pos.first + 1, pos.second));
     }
     // right = row, col - 1 (if >= 0)
     if ((pos.second - 1) >= 0)
     {
-      output.emplace_back(std::make_pair(pos.first, pos.second - 1));
+      output.push_back(std::make_pair(pos.first, pos.second - 1));
     }
-    // left  = row, col + 1 (if <= col size)
-    if ((pos.second + 1) < dim.second)
+    // up    = row - 1, col (if >= 0)
+    if ((pos.first - 1) >= 0)
     {
-      output.emplace_back(std::make_pair(pos.first, pos.second + 1));
+      output.push_back(std::make_pair(pos.first - 1, pos.second));
     }
-
     return output;
   }
 

@@ -2,7 +2,7 @@
 #include <fstream>
 #include <sstream>
 
-namespace BreadthFirstSearch
+namespace DepthFirstSearch
 {
   std::vector<Matrix> load_test_data(std::string file_name)
   {
@@ -52,6 +52,6 @@ namespace BreadthFirstSearch
     return output;
   }
 
-} // BreadthFirstSearch
+} // DepthFirstSearch
 
 

@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <iostream>
 
-namespace BreadthFirstSearch
+namespace DepthFirstSearch
 {
   const int SOURCE = 1;
   const int DESTINATION = 2;
@@ -15,11 +15,11 @@ namespace BreadthFirstSearch
 
   // function declarations
   std::pair<NodePtr, NodePtr> find_source_dest(const Graph& graph);
-  int breadth_first_search(const Graph& graph);
+  int depth_first_search(const Graph& graph);
 
-  void RunBFS(const Graph& graph)
+  void RunDFS(const Graph& graph)
   {
-    int distance = breadth_first_search(graph);
+    int distance = depth_first_search(graph);
     if (distance != -1)
     {
       std::cout << "1:" << distance << "\n";
@@ -30,9 +30,9 @@ namespace BreadthFirstSearch
     }
   }
 
-  /// breadth first search algorithm. returns the shortest distance from
+  /// depth first search algorithm. returns the shortest distance from
   /// source node to destination node. if no path exists returns -1.
-  int breadth_first_search(const Graph& graph)
+  int depth_first_search(const Graph& graph)
   {
     // get pointers to the source and destination nodes
     std::pair<NodePtr, NodePtr> source_dest{ find_source_dest(graph) };
@@ -43,17 +43,17 @@ namespace BreadthFirstSearch
     std::unordered_map<NodePtr, NodePtr> visited_nodes;
 
     // stores nodes to be searched
-    std::deque<NodePtr> node_queue{};
+    std::deque<NodePtr> node_stack{};
 
     visited_nodes[source] = nullptr; // mark source as visited 
-    node_queue.push_back(source); // enqueue the source node
+    node_stack.push_back(source); // push the source node
 
     bool destination_found{ false };
-    while (!node_queue.empty())
+    while (!node_stack.empty())
     {
-      // grab the first node from the queue
-      NodePtr cur_node{ node_queue.front() };
-      node_queue.pop_front();
+      // pop the first node from the stack
+      NodePtr cur_node{ node_stack.back() };
+      node_stack.pop_back();
 
       // check if the node is the destination
       if (cur_node == destination)
@@ -72,7 +72,7 @@ namespace BreadthFirstSearch
           {
             // mark as visited
             visited_nodes[neighbour] = cur_node;
-            node_queue.push_back(neighbour);
+            node_stack.push_back(neighbour); //push on to stack
           }
         }
       }

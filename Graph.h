@@ -6,7 +6,7 @@
 #include <vector>
 #include <memory>
 
-namespace BreadthFirstSearch
+namespace DepthFirstSearch
 {
   /// stores a matrix within a graph datastructure
   class Graph
